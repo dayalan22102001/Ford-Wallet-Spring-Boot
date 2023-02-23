@@ -5,13 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping(value = "/v1/wallet/")
 public class WalletController {
 
-    @Autowired
-    WalletService walletService;
+        @Autowired
+        WalletService walletService;
 
         @PostMapping("/")
         @ResponseStatus(value = HttpStatus.CREATED)
@@ -53,14 +56,17 @@ public class WalletController {
         }
 
 
-        WalletDto fundTranfer(Integer fromId, Integer toId, Double amount){
+        @PostMapping("/tranferFunds/{fromId}/{toId}")
+        @ResponseStatus(value = HttpStatus.ACCEPTED)
+        String fundTranfer(Integer fromId, Integer toId, Double amount) throws WalletException{
 
-            return null;
+            return walletService.tranfersFunds(fromId,toId,amount);
         }
 
-        public List<WalletDto> getAllWallets() {
+        @RequestMapping(method = RequestMethod.GET, value = "/")
+        public ArrayList<WalletDto> getAllWallets() {
+            return walletService.getAllWallets();
 
-            return null;
         }
 
 }

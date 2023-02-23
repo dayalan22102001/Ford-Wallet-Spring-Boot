@@ -4,6 +4,10 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class WalletServiceImpl implements WalletService{
 
@@ -44,10 +48,6 @@ public class WalletServiceImpl implements WalletService{
         return temp;
     }
 
-    @Override
-    public WalletDto getBalance(Integer id) throws WalletException {
-        return null;
-    }
 
     public Double addFunds(Integer id, Double amount){
 
@@ -68,9 +68,24 @@ public class WalletServiceImpl implements WalletService{
     }
 
     @Override
-    public WalletDto tranfersFunds(Integer fromId, Integer toId, Double amount) {
-        return null;
+    public String tranfersFunds(Integer fromId, Integer toId, Double amount) {
+        WalletDto fromWallet = walletRepository.getWalletById(fromId);
+        WalletDto toWallet = walletRepository.getWalletById(toId);
+        Double fromWalletBalance = fromWallet.getBalance() -amount;
+        fromWallet.setBalance(fromWalletBalance);
+        Double toWalletBalnce = toWallet.getBalance() + amount;
+        toWallet.setBalance(toWalletBalnce);
+        return "balance of " + fromWallet.getId() + ": " + fromWalletBalance + "\n balnce of " + toWallet.getId() + ": " + toWalletBalnce;
     }
+
+    public ArrayList<WalletDto> getAllWallets() {
+
+        return walletRepository.getAllWallets();
+
+
+    }
+
+
 
 
 

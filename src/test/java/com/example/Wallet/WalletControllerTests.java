@@ -27,7 +27,7 @@ public class WalletControllerTests {
 
     @BeforeEach
     public void init(){
-        this.restTemplate.postForObject("http://localhost:" + port + "/v1/wallet",new WalletDto(2,"Kumar",25000.0),WalletDto.class);
+        this.restTemplate.postForObject("http://localhost:" + port + "/v1/wallet",new WalletDto(1,"Kumar",25000.0),WalletController.class);
     }
 
     @Test
