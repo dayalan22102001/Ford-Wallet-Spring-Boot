@@ -22,6 +22,6 @@ public class WalletIntegrationTest {
         assertThrows(WalletException.class, ()->this.walletService.getWalletByID(1000));
     }
 
-    void
+
 
 }

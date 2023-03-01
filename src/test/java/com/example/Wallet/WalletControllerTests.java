@@ -32,7 +32,7 @@ public class WalletControllerTests {
 
     @Test
     public void getWalletByIdTest() throws Exception{
-        WalletDto foundWallet = this.restTemplate.getForObject("http://localhost:" + port + "/v1/wallet/2",
+        WalletDto foundWallet = this.restTemplate.getForObject("http://localhost:" + port + "/v1/wallet/1",
                 WalletDto.class);
         assertEquals("Kumar", foundWallet.getName());
 

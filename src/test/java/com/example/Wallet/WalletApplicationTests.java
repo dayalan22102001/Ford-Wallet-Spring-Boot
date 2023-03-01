@@ -29,7 +29,7 @@ class WalletApplicationTests {
 
 	}
 	@Test
-	void testUpdateWallet(){
+	void testUpdateWallet() throws WalletException {
 		WalletDto wallet1 = new WalletDto(1,"Dayalan",5000.0);
 		assertEquals(5000.0,this.walletService.updateWallet(wallet1).getBalance());
 	}

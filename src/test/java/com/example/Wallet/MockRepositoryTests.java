@@ -1,7 +1,5 @@
 package com.example.Wallet;
 
-import com.example.Wallet.WalletService;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +15,7 @@ public class MockRepositoryTests {
     private WalletService walletService;
 
     @MockBean
-    private WalletRepository walletRepository;
+    private CollectionWalletRepository walletRepository;
 
     @Test
     public void testServiceWithOutActualRepository() throws WalletException{

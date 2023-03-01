@@ -2,11 +2,10 @@ package com.example.Wallet;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.stream.*;
 import java.util.*;
 
 @Repository
-public class WalletRepositoryImpl implements WalletRepository {
+public class CollectionWalletRepositoryImpl implements CollectionWalletRepository {
 
     Map<Integer, WalletDto> walletDtoMap = new HashMap<>();
 
@@ -31,16 +30,9 @@ public class WalletRepositoryImpl implements WalletRepository {
         return walletDtoMap.get(id);
     }
 
-    @Override
-    public ArrayList<WalletDto> getAllWallets() {
+    public Collection<WalletDto> getAllWallets() {
 
-        ArrayList<WalletDto> ListofValues = null;
-
-
-        ListofValues = walletDtoMap.values().stream().collect(Collectors.toCollection(ArrayList::new));
-
-        return ListofValues;
-
+        return  this.walletDtoMap.values();
     }
 
 }

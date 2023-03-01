@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class WalletController {
         }
 
         @PutMapping("/")
-        WalletDto updateWallet(@RequestBody WalletDto walletDto){
+        WalletDto updateWallet(@RequestBody WalletDto walletDto) throws WalletException {
 
             return walletService.updateWallet(walletDto);
         }
@@ -42,13 +43,13 @@ public class WalletController {
         }
 
 
-        @PostMapping("/addFund/{id}")
+        @PatchMapping("/addFund/{id}")
         @ResponseStatus(value = HttpStatus.ACCEPTED)
         Double addFunds( @PathVariable Integer id, @RequestParam Double balance) throws WalletException{
 
             return walletService.addFunds(id,balance);
         }
-        @PostMapping("/withdrawFund/{id}")
+        @PatchMapping ("/withdrawFund/{id}")
         @ResponseStatus(value = HttpStatus.ACCEPTED)
         Double withdrawFunds(@PathVariable Integer id, @RequestParam Double balance ) throws WalletException{
 
@@ -56,17 +57,17 @@ public class WalletController {
         }
 
 
-        @PostMapping("/tranferFunds/{fromId}/{toId}")
+        @PatchMapping("/tranferFunds/{fromId}/{toId}")
         @ResponseStatus(value = HttpStatus.ACCEPTED)
         String fundTranfer(Integer fromId, Integer toId, Double amount) throws WalletException{
 
             return walletService.tranfersFunds(fromId,toId,amount);
         }
 
-        @RequestMapping(method = RequestMethod.GET, value = "/")
-        public ArrayList<WalletDto> getAllWallets() {
-            return walletService.getAllWallets();
+    @GetMapping("wallets")
+    public Collection<WalletDto> getAllWallets(){
+        return this.walletService.getAllWallets();
+    }
 
-        }
 
 }

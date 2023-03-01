@@ -1,6 +1,7 @@
 package com.example.Wallet;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 public interface WalletService {
@@ -9,7 +10,7 @@ public interface WalletService {
 
     WalletDto getWalletByID(Integer id) throws WalletException ;
 
-    WalletDto updateWallet(WalletDto walletDto);
+    WalletDto updateWallet(WalletDto walletDto) throws WalletException;
 
     WalletDto deleteWalletById(Integer id) throws WalletException;
 
@@ -19,6 +20,6 @@ public interface WalletService {
 
     String tranfersFunds(Integer fromId, Integer toId, Double amount) throws WalletException;
 
-    public ArrayList<WalletDto> getAllWallets();
+    public Collection<WalletDto> getAllWallets();
 
 }

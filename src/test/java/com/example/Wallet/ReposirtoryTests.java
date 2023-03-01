@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class ReposirtoryTests {
     @Autowired
-    private WalletRepository walletRepository;
+    private CollectionWalletRepository walletRepository;
 
     @BeforeEach
     public void init(){
