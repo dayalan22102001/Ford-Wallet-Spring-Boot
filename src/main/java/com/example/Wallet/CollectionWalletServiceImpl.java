@@ -72,7 +72,7 @@ public class CollectionWalletServiceImpl implements WalletService{
         fromWallet.setBalance(fromWalletBalance);
         Double toWalletBalnce = toWallet.getBalance() + amount;
         toWallet.setBalance(toWalletBalnce);
-        return "balance of " + fromWallet.getId() + ": " + fromWalletBalance + "\n balnce of " + toWallet.getId() + ": " + toWalletBalnce;
+        return "balance of " + fromWallet.getId() + ": " + fromWalletBalance + "\n balance of " + toWallet.getId() + ": " + toWalletBalnce;
     }
 
     public Collection<WalletDto> getAllWallets() {

@@ -98,8 +98,8 @@ public class WalletServiceImpl implements WalletService{
 
         this.walletJpaRepository.save(fromWallet);
         this.walletJpaRepository.save(toWallet);
-        return "Tranfer Complete" + "\n Balance of : \n "+fromId + " : "+fromWalletBalance
-                +" \n " + toId + " : " + toWalletBalance;
+        return "Tranfer Complete" + "Balance of :"+fromId + " : "+fromWalletBalance
+                +" " + toId + " : " + toWalletBalance;
     }
 
     @Override

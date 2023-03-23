@@ -4,18 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/v1/wallet/")
+@CrossOrigin(value = "http://localhost:4200/")
 public class WalletController {
 
         @Autowired
         WalletService walletService;
+
+        WalletDto walletDto;
+
+        WalletJpaRepository walletJpaRepository;
 
         @PostMapping("/")
         @ResponseStatus(value = HttpStatus.CREATED)
@@ -30,7 +34,7 @@ public class WalletController {
         }
 
         @PutMapping("/")
-        WalletDto updateWallet(@RequestBody WalletDto walletDto) throws WalletException {
+        WalletDto updateWallet(@Valid @RequestBody WalletDto walletDto) throws WalletException {
 
             return walletService.updateWallet(walletDto);
         }
@@ -64,10 +68,11 @@ public class WalletController {
             return walletService.tranfersFunds(fromId,toId,amount);
         }
 
-    @GetMapping("wallets")
-    public Collection<WalletDto> getAllWallets(){
-        return this.walletService.getAllWallets();
-    }
+        @GetMapping("wallets")
+        public Collection<WalletDto> getAllWallets(){
+
+            return this.walletService.getAllWallets();
+        }
 
 
 }
